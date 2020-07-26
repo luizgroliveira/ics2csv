@@ -7,6 +7,7 @@ import vobject
 import csv
 import os
 import glob
+import re
 from datetime import datetime
 
 dir_csv="/tmp/csv/"
@@ -31,8 +32,11 @@ print "Salvando arquivos csv no diretorio {}".format(dir_csv)
 
     
 def convert2csv(file_ics):
-    print "Convertendo o arquivo: {}".format(file_ics)
-    with open(dir_csv + '/' + file_ics + '.csv', mode='w') as csv_out:
+    print "-" * 40
+    print "Convertendo o arquivo ICS: {}".format(file_ics)
+    file_csv = os.path.join(dir_csv, re.sub(".ics$",".csv",file_ics))
+    with open(file_csv, mode='w') as csv_out:
+        print "Criando o arquivo CSV: {}".format(file_csv)
         #csv_writer = csv.writer(csv_out, delimiter=',', quotechar='"', quoting=csv.QUOTE_MINIMAL)
         csv_writer = csv.writer(csv_out, delimiter=',', quotechar='"', quoting=csv.QUOTE_MINIMAL)
         csv_writer.writerow(["Subject", "StartDate", "StartTime", "EndDate", "EndTime", "Note","Attendees","Location","Organize"])
@@ -106,7 +110,7 @@ def convert2csv(file_ics):
                     #csv_writer.writerow([component.summary.valueRepr(),component.dtstart.valueRepr(),component.dtend.valueRepr()])
                     #print "date: {}, time: {}".format(dtstart_date, dtstart_time)
                     #csv_writer.writerow([summary, dtstart_date, dtstart_time, dtend_date, dtend_time, description.replace("\n","\\n"),attendee])
-                    csv_writer.writerow([summary, dtstart_date, dtstart_time, dtend_date, dtend_time, description.replace("\n","\\n"),','.join(list_attendee), location, organizer, status])
+                    csv_writer.writerow([summary, dtstart_date, dtstart_time, dtend_date, dtend_time, description.replace("\n"," "),','.join(list_attendee), location, organizer, status])
     
 
 os.chdir(dir_ics)
