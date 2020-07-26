@@ -37,9 +37,9 @@ def convert2csv(file_ics):
     file_csv = os.path.join(dir_csv, re.sub(".ics$",".csv",file_ics))
     with open(file_csv, mode='w') as csv_out:
         print "Criando o arquivo CSV: {}".format(file_csv)
-        #csv_writer = csv.writer(csv_out, delimiter=',', quotechar='"', quoting=csv.QUOTE_MINIMAL)
         csv_writer = csv.writer(csv_out, delimiter=',', quotechar='"', quoting=csv.QUOTE_MINIMAL)
-        csv_writer.writerow(["Subject", "StartDate", "StartTime", "EndDate", "EndTime", "Note","Attendees","Location","Organize"])
+        #csv_writer.writerow(["Subject", "StartDate", "StartTime", "EndDate", "EndTime", "Note","Attendees","Location","Organize", "Status"])
+        csv_writer.writerow(["Subject", "StartDate", "StartTime", "EndDate", "EndTime", "Note"])
     
         # read the data from the file
         data = open(file_ics).read()
@@ -107,10 +107,8 @@ def convert2csv(file_ics):
                     except:
                         status = ""
 
-                    #csv_writer.writerow([component.summary.valueRepr(),component.dtstart.valueRepr(),component.dtend.valueRepr()])
-                    #print "date: {}, time: {}".format(dtstart_date, dtstart_time)
-                    #csv_writer.writerow([summary, dtstart_date, dtstart_time, dtend_date, dtend_time, description.replace("\n","\\n"),attendee])
-                    csv_writer.writerow([summary, dtstart_date, dtstart_time, dtend_date, dtend_time, description.replace("\n"," "),','.join(list_attendee), location, organizer, status])
+                    #csv_writer.writerow([summary, dtstart_date, dtstart_time, dtend_date, dtend_time, description.replace("\n"," "),','.join(list_attendee), location, organizer, status])
+                    csv_writer.writerow([summary, dtstart_date, dtstart_time, dtend_date, dtend_time, description.replace("\n"," ")])
     
 
 os.chdir(dir_ics)
