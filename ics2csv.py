@@ -12,6 +12,8 @@ from datetime import datetime
 
 dir_csv="/tmp/csv/"
 dir_ics="/tmp/ics"
+format_date="%m/%d/%Y"
+format_time="%H:%M"
 
 if os.path.isdir(dir_ics):
     print "Tratando arquivos ics do diretorio: {}".format(dir_ics)
@@ -56,22 +58,22 @@ def convert2csv(file_ics):
                       summary = ""
     
                     try:
-                      dtstart_date = component.dtstart.valueRepr().strftime("%m/%d/%Y")
+                      dtstart_date = component.dtstart.valueRepr().strftime(format_date)
                     except:
                       dtstart_date = ""
     
                     try:
-                      dtstart_time = component.dtstart.valueRepr().strftime("%H:%M:%S")
+                      dtstart_time = component.dtstart.valueRepr().strftime(format_time)
                     except:
                       dtstart_time = ""
     
                     try:
-                      dtend_date = component.dtend.valueRepr().strftime("%m/%d/%Y")
+                      dtend_date = component.dtend.valueRepr().strftime(format_date)
                     except:
                       dtend_date = ""
     
                     try:
-                      dtend_time = component.dtend.valueRepr().strftime("%H:%M:%S")
+                      dtend_time = component.dtend.valueRepr().strftime(format_time)
                     except:
                       dtend_time = ""
     
