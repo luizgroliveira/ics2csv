@@ -113,7 +113,8 @@ def convert2csv(file_ics):
                         status = ""
 
                     #csv_writer.writerow([summary, dtstart_date, dtstart_time, dtend_date, dtend_time, description.replace("\n"," "),','.join(list_attendee), location, organizer, status])
-                    csv_writer.writerow([summary, dtstart_date, dtstart_time, dtend_date, dtend_time, description.replace("\n"," ")])
+                    #csv_writer.writerow([summary, dtstart_date, dtstart_time, dtend_date, dtend_time, description.replace("\n"," "),','.join(list_attendee)])
+                    csv_writer.writerow([summary, dtstart_date, dtstart_time, dtend_date, dtend_time, "{} .participantes: {}".format(description.replace("\n"," "),','.join(list_attendee))])
     
 
 os.chdir(dir_ics)
