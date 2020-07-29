@@ -10,10 +10,13 @@ import glob
 import re
 from datetime import datetime
 
-dir_csv="/tmp/csv/"
-dir_ics="/tmp/ics"
-format_date="%m/%d/%Y"
-format_time="%H:%M"
+dir_csv = "~/git/csv"
+dir_ics = "~/git/ics"
+format_date = "%m/%d/%Y"
+format_time = "%H:%M"
+
+dir_csv = os.path.expanduser(dir_csv)
+dir_ics = os.path.expanduser(dir_ics)
 
 if os.path.isdir(dir_ics):
     print "Tratando arquivos ics do diretorio: {}".format(dir_ics)
