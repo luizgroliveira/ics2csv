@@ -44,7 +44,7 @@ def convert2csv(file_ics):
         print "Criando o arquivo CSV: {}".format(file_csv)
         csv_writer = csv.writer(csv_out, delimiter=',', quotechar='"', quoting=csv.QUOTE_MINIMAL)
         #csv_writer.writerow(["Subject", "StartDate", "StartTime", "EndDate", "EndTime", "Note","Attendees","Location","Organize", "Status"])
-        csv_writer.writerow(["Subject", "StartDate", "StartTime", "EndDate", "EndTime", "Note"])
+        csv_writer.writerow(["Subject", "StartDate", "StartTime", "EndDate", "EndTime", "Note", "Location", "Attendees"])
     
         # read the data from the file
         data = open(file_ics).read()
@@ -114,7 +114,7 @@ def convert2csv(file_ics):
 
                     #csv_writer.writerow([summary, dtstart_date, dtstart_time, dtend_date, dtend_time, description.replace("\n"," "),','.join(list_attendee), location, organizer, status])
                     #csv_writer.writerow([summary, dtstart_date, dtstart_time, dtend_date, dtend_time, description.replace("\n"," "),','.join(list_attendee)])
-                    csv_writer.writerow([summary, dtstart_date, dtstart_time, dtend_date, dtend_time, "{} .participantes: {}".format(description.replace("\n"," "),','.join(list_attendee))])
+                    csv_writer.writerow([summary, dtstart_date, dtstart_time, dtend_date, dtend_time, description.replace("\n"," "), location, ','.join(list_attendee)])
     
 
 os.chdir(dir_ics)
